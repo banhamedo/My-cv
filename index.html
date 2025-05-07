@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Ibrahim - Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900">
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-white dark:bg-gray-800 shadow-lg z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <h1 class="text-xl font-bold text-blue-600">Mohamed Ibrahim</h1>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <button id="themeToggle" class="nav-link">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <button id="menuBtn" class="md:hidden text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm hidden z-40">
+        <div class="bg-white dark:bg-gray-800 w-64 h-full p-4">
+            <div class="flex justify-end">
+                <button id="closeMenu" class="text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-4 mt-8">
+                <a href="#home" class="mobile-nav-link">Home</a>
+                <a href="#about" class="mobile-nav-link">About</a>
+                <a href="#projects" class="mobile-nav-link">Projects</a>
+                <a href="#contact" class="mobile-nav-link">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-20 min-h-screen flex items-center">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4">
+                        Hi, I'm <span class="text-blue-600">Mohamed Ibrahim</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 mb-8" id="typingText"></p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <a href="#contact" class="btn-primary">
+                            Contact Me
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#projects" class="btn-secondary">
+                            View Projects
+                            <i class="fas fa-eye ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-blue-600/20 rounded-full blur-2xl"></div>
+                        <img src="IMG-20250328-WA0011.jpg" alt="Profile"  loading="lazy" class="relative rounded-full w-64 h-64 object-cover mx-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">About Me</h2>
+            <div class="mt-12">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                        Highly skilled Web Developer, Data Analyst, and Data Scientist with diverse experience in web 
+                        development, data analysis, hardware/software solutions, and Robotic Process Automation (RPA). 
+                        Known for transforming innovative ideas into practical and efficient solutions. Adept in modern 
+                        programming languages, analytical tools, and creative technologies, with a strong passion for 
+                        continuous learning and impactful results.
+                    </p>
+                </div>
+
+                <!-- Education -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 mb-12">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white">Education</h3>
+                    <div class="text-center">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Currently pursuing Data Science at Helwan International Technological University
+                            <br>
+                            Misr International College of Technology
+                            <br>
+                            Third Year Specialization in Data Science
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Skills Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Technical Skills -->
+                    <div class="skill-card">
+                        <i class="fas fa-laptop-code text-3xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">Technical Skills</h3>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Python Programming & Data Science</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Front-End Development</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>RPA & Automation</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>MySQL & Database Management</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Linux & Windows OS</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Networking & Security</li>
+                        </ul>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="skill-card">
+                        <i class="fas fa-certificate text-3xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">Certifications</h3>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li>Machine Learning - Egyptian Space Science Authority</li>
+                            <li>Business Analysis Certificate</li>
+                            <li>SQL Certificate - Mahara Tech</li>
+                            <li>Python Certificate - Mahara Tech</li>
+                            <li>Front-End Development - Mahara Tech</li>
+                            <li>Analysis Tools Certification</li>
+                        </ul>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="skill-card">
+                        <i class="fas fa-users text-3xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">Soft Skills</h3>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Problem Solving</li>
+                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Team Collaboration</li>
+                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Communication Skills</li>
+                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Time Management</li>
+                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Adaptability</li>
+                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Research & Creativity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="mt-12 flex justify-center gap-8">
+                    <div class="text-center">
+                        <h4 class="font-bold text-gray-800 dark:text-white mb-2">Arabic</h4>
+                        <p class="text-gray-600 dark:text-gray-300">Native</p>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-bold text-gray-800 dark:text-white mb-2">English</h4>
+                        <p class="text-gray-600 dark:text-gray-300">Intermediate</p>
+                    </div>
+                </div>
+
+                <div class="skills-progress mt-8">
+                    <div class="skill-progress-item">
+                        <div class="flex justify-between mb-2">
+                            <span>Python</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="h-full bg-blue-600 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>PHP</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="h-full bg-blue-600 rounded-full" style="width: 90%"></div>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Html</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="h-full bg-blue-600 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <!-- Add more skills with progress bars -->
+                </div>
+
+                <div class="skills-cloud mt-8">
+                    <!-- Add interactive skill bubbles or word cloud -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">My Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8 mt-12">
+                <!-- RFID Attendance Project -->
+                <div class="project-card">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-id-card text-2xl text-blue-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">RFID Attendance System</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            An automated system for attendance tracking and academic data analysis using RFID technology.
+                            Features include:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 mb-4 space-y-2">
+                            <li>Automated attendance tracking</li>
+                            <li>Real-time data analysis</li>
+                            <li>Academic performance monitoring</li>
+                            <li>RFID integration</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="tech-tag">RFID</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Data Analysis</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                        <div class="project-links mt-4">
+                            <a href="#" class="btn-link">
+                                <i class="fas fa-play-circle mr-2"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="btn-link ml-4">
+                                <i class="fab fa-github mr-2"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Degree Student System -->
+                <div class="project-card">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-user-graduate text-2xl text-blue-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Degree Student System</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Comprehensive system that automates attendance tracking, provides analytics, and monitors academic 
+                            progress through ID scanning. Key features:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 mb-4 space-y-2">
+                            <li>Student progress tracking</li>
+                            <li>Performance analytics</li>
+                            <li>Automated reporting</li>
+                            <li>ID scanning integration</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="tech-tag">ID Scanning</span>
+                            <span class="tech-tag">Analytics</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Database</span>
+                        </div>
+                        <div class="project-links mt-4">
+                            <a href="#" class="btn-link">
+                                <i class="fas fa-play-circle mr-2"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="btn-link ml-4">
+                                <i class="fab fa-github mr-2"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RPA Automated System -->
+                <div class="project-card">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-robot text-2xl text-blue-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">RPA Automated System</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            A fully automated attendance system combining UiPath, Google Forms, Python, and QR Code technology.
+                            System features:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 mb-4 space-y-2">
+                            <li>Google Forms integration for attendance</li>
+                            <li>UiPath automated data collection</li>
+                            <li>Python-based data validation</li>
+                            <li>Real-time reporting system</li>
+                            <li>QR code generation and email distribution</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="tech-tag">UiPath</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Google Forms</span>
+                            <span class="tech-tag">QR Code</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                        <div class="project-links mt-4">
+                            <a href="#" class="btn-link">
+                                <i class="fas fa-play-circle mr-2"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="btn-link ml-4">
+                                <i class="fab fa-github mr-2"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recycling Web App -->
+                <div class="project-card">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-recycle text-2xl text-blue-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Recycling Web App</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Web application that promotes recycling by linking users to nearby centers and incentivizing 
+                            sustainable waste disposal. Features include:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 mb-4 space-y-2">
+                            <li>Center location mapping</li>
+                            <li>Recycling incentive system</li>
+                            <li>User-friendly interface</li>
+                            <li>Environmental impact tracking</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="tech-tag">Web Development</span>
+                            <span class="tech-tag">Front-end</span>
+                            <span class="tech-tag">Sustainability</span>
+                            <span class="tech-tag">UX Design</span>
+                        </div>
+                        <div class="project-links mt-4">
+                            <a href="#" class="btn-link">
+                                <i class="fas fa-play-circle mr-2"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="btn-link ml-4">
+                                <i class="fab fa-github mr-2"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">Professional Journey</h2>
+            <div class="relative mt-12">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200 dark:bg-blue-900"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- Current -->
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="date">2023 - Present</span>
+                            <h3>Data Science Student</h3>
+                            <p>Helwan International Technological University</p>
+                            <ul>
+                                <li>Specializing in Data Science</li>
+                                <li>Third Year Student</li>
+                                <li>Focus on practical applications and research</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Add your internships, work experience, or significant projects here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="max-w-4xl mx-auto mt-12">
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="contact-info-card">
+                        <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Contact Information</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope text-blue-600 mr-3"></i>
+                                <a href="mailto:Mhmdg7480@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">
+                                    Mhmdg7480@gmail.com
+                                </a>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-phone text-blue-600 mr-3"></i>
+                                <a href="tel:+2001063697784" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">
+                                    +2001063697784
+                                </a>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-blue-600 mr-3"></i>
+                                <span class="text-gray-600 dark:text-gray-300">
+                                    Banha, Elqlubia, Egypt
+                                </span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fab fa-linkedin text-blue-600 mr-3"></i>
+                                <a href="https://linkedin.com/in/mohamed-ibrahim" target="_blank" 
+                                   class="text-gray-600 dark:text-gray-300 hover:text-blue-600">
+                                    LinkedIn Profile
+                                </a>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fab fa-github text-blue-600 mr-3"></i>
+                                <a href="https://github.com/banhamedo" target="_blank" 
+                                   class="text-gray-600 dark:text-gray-300 hover:text-blue-600">
+                                    GitHub Profile
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select id="subject" name="subject" class="form-select">
+                                <option>Project Inquiry</option>
+                                <option>Job Opportunity</option>
+                                <option>Collaboration</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-center mt-8">
+                            <a href="My cv.pdf" class="btn-primary" download>
+                                <i class="fas fa-download mr-2"></i>
+                                Download CV
+                            </a>
+                        </div>
+                        <button type="submit" class="btn-primary w-full">
+                            Send Message
+                            <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">Achievements & Recognition</h2>
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <!-- Add your achievements, awards, recognition -->
+                <div class="achievement-card">
+                    <i class="fas fa-trophy text-yellow-500 text-3xl mb-4"></i>
+                    <h3>Machine Learning Certification</h3>
+                    <p>Egyptian Space Science and Monitoring Authority</p>
+                </div>
+                <!-- Add more achievements -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">Technical Articles & Insights</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <!-- Blog posts or technical articles if you write any -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">What I Offer</h2>
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="service-card">
+                    <i class="fas fa-chart-line text-blue-600 text-3xl mb-4"></i>
+                    <h3>Data Analysis</h3>
+                    <p>Transform raw data into actionable insights using advanced analytical techniques.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-robot text-blue-600 text-3xl mb-4"></i>
+                    <h3>RPA Development</h3>
+                    <p>Automate business processes to improve efficiency and reduce manual work.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-code text-blue-600 text-3xl mb-4"></i>
+                    <h3>Web Development</h3>
+                    <p>Create responsive and modern web applications with latest technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">What Others Say</h2>
+            <div class="mt-12">
+                <!-- Add testimonials from professors, colleagues, or clients -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; <span id="year"></span> Mohamed Ibrahim. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="https://linkedin.com/in/mohamed-ibrahim" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:Mhmdg7480@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="tel:+2001063697784" class="social-link">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html> 
