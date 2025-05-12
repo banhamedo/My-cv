@@ -582,7 +582,7 @@
                             <span class="tech-tag">Automation</span>
                         </div>
                         <div class="project-links mt-4">
-                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center" onclick="openRpaVideoModal(event)">
                                 <i class="fas fa-play-circle mr-2 animate-pulse"></i>
                                 Live Demo
                             </a>
@@ -618,7 +618,7 @@
                             <span class="tech-tag">UX Design</span>
                         </div>
                         <div class="project-links mt-4">
-                            <a href="rec.mp4" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center" onclick="openVideoModal(event)">
                                 <i class="fas fa-play-circle mr-2 animate-pulse"></i>
                                 Live Demo
                             </a>
@@ -657,7 +657,7 @@
                             <span class="tech-tag">Payment Integration</span>
                         </div>
                         <div class="project-links mt-4">
-                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center" onclick="openPhoneVideoModal(event)">
                                 <i class="fas fa-play-circle mr-2 animate-pulse"></i>
                                 Live Demo
                             </a>
@@ -833,6 +833,97 @@
             floatingNavbar.classList.add('opacity-0','pointer-events-none');
         }
         lastScrollY = window.scrollY;
+    });
+    </script>
+
+    <!-- Modal for Live Demo Video -->
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+      <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-2xl w-full">
+        <button id="closeVideoModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500">&times;</button>
+        <video id="demoVideo" src="rec.mp4" controls autoplay class="w-full rounded-lg"></video>
+      </div>
+    </div>
+
+    <!-- Add JS for modal control -->
+    <script>
+    function openVideoModal(e) {
+      e.preventDefault();
+      document.getElementById('videoModal').classList.remove('hidden');
+      document.getElementById('demoVideo').play();
+    }
+    document.getElementById('closeVideoModal').onclick = function() {
+      document.getElementById('videoModal').classList.add('hidden');
+      document.getElementById('demoVideo').pause();
+      document.getElementById('demoVideo').currentTime = 0;
+    };
+    // Close modal when clicking outside video
+    window.addEventListener('click', function(e) {
+      const modal = document.getElementById('videoModal');
+      if (!modal.classList.contains('hidden') && e.target === modal) {
+        modal.classList.add('hidden');
+        document.getElementById('demoVideo').pause();
+        document.getElementById('demoVideo').currentTime = 0;
+      }
+    });
+    </script>
+
+    <!-- Modal for Mobile Shop Live Demo Video -->
+    <div id="phoneVideoModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+      <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-2xl w-full">
+        <button id="closePhoneVideoModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500">&times;</button>
+        <video id="phoneDemoVideo" src="phone.mp4" controls autoplay class="w-full rounded-lg"></video>
+      </div>
+    </div>
+
+    <!-- Add JS for phone video modal control -->
+    <script>
+    function openPhoneVideoModal(e) {
+      e.preventDefault();
+      document.getElementById('phoneVideoModal').classList.remove('hidden');
+      document.getElementById('phoneDemoVideo').play();
+    }
+    document.getElementById('closePhoneVideoModal').onclick = function() {
+      document.getElementById('phoneVideoModal').classList.add('hidden');
+      document.getElementById('phoneDemoVideo').pause();
+      document.getElementById('phoneDemoVideo').currentTime = 0;
+    };
+    window.addEventListener('click', function(e) {
+      const modal = document.getElementById('phoneVideoModal');
+      if (!modal.classList.contains('hidden') && e.target === modal) {
+        modal.classList.add('hidden');
+        document.getElementById('phoneDemoVideo').pause();
+        document.getElementById('phoneDemoVideo').currentTime = 0;
+      }
+    });
+    </script>
+
+    <!-- Modal for RPA Live Demo Video -->
+    <div id="rpaVideoModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+      <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-2xl w-full">
+        <button id="closeRpaVideoModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500">&times;</button>
+        <video id="rpaDemoVideo" src="rpa.mkv" controls autoplay class="w-full rounded-lg"></video>
+      </div>
+    </div>
+
+    <!-- Add JS for RPA video modal control -->
+    <script>
+    function openRpaVideoModal(e) {
+      e.preventDefault();
+      document.getElementById('rpaVideoModal').classList.remove('hidden');
+      document.getElementById('rpaDemoVideo').play();
+    }
+    document.getElementById('closeRpaVideoModal').onclick = function() {
+      document.getElementById('rpaVideoModal').classList.add('hidden');
+      document.getElementById('rpaDemoVideo').pause();
+      document.getElementById('rpaDemoVideo').currentTime = 0;
+    };
+    window.addEventListener('click', function(e) {
+      const modal = document.getElementById('rpaVideoModal');
+      if (!modal.classList.contains('hidden') && e.target === modal) {
+        modal.classList.add('hidden');
+        document.getElementById('rpaDemoVideo').pause();
+        document.getElementById('rpaDemoVideo').currentTime = 0;
+      }
     });
     </script>
 </body>
