@@ -2,25 +2,31 @@
 :root {
     --primary: #2563eb;
     --primary-dark: #1d4ed8;
-    --color-primary: #3B82F6;
-    --color-secondary: #8B5CF6;
-    --color-success: #10B981;
+    --color-primary: #4F46E5;
+    --color-secondary: #7C3AED;
+    --color-success: #059669;
     --color-background: #F8FAFC;
     --color-card: #FFFFFF;
     --color-text: #1E293B;
     --color-text-secondary: #64748B;
     --color-border: #E2E8F0;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 }
 
 .dark {
-    --color-primary: #60A5FA;
+    --color-primary: #818CF8;
     --color-secondary: #A78BFA;
     --color-success: #34D399;
     --color-background: #0F172A;
     --color-card: #1E293B;
     --color-text: #F1F5F9;
     --color-text-secondary: #94A3B8;
-    --color-border: #2D3748;
+    --color-border: #334155;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
 }
 
 /* Base styles */
@@ -82,13 +88,16 @@ body {
     padding: 0.75rem 1.5rem;
     background-color: var(--color-primary);
     color: white;
-    border-radius: 9999px;
-    transition: all 0.3s;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
+    background-color: var(--primary-dark);
 }
 
 .btn-secondary {
@@ -97,13 +106,16 @@ body {
     padding: 0.75rem 1.5rem;
     border: 2px solid var(--color-primary);
     color: var(--color-primary);
-    border-radius: 9999px;
-    transition: all 0.3s;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
 .btn-secondary:hover {
     background-color: var(--color-primary);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Cards */
@@ -111,41 +123,46 @@ body {
     background-color: var(--color-card);
     border-radius: 1rem;
     padding: 1.5rem;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
 }
 
 .skill-card:hover, .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
 }
 
 /* Form styles */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     color: var(--color-text);
+    font-weight: 500;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
     border: 1px solid var(--color-border);
     border-radius: 0.5rem;
     background-color: var(--color-card);
     color: var(--color-text);
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: all 0.2s ease;
+    font-size: 1rem;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 /* Social links */
@@ -155,22 +172,25 @@ body {
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: 9999px;
+    border-radius: 0.5rem;
     background-color: var(--color-card);
     color: var(--color-text);
-    transition: all 0.3s;
+    transition: all 0.2s ease;
+    border: 1px solid var(--color-border);
 }
 
 .social-link:hover {
     background-color: var(--color-primary);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 /* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px);
     }
     to {
         opacity: 1;
@@ -179,7 +199,7 @@ body {
 }
 
 .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Custom scrollbar */
@@ -210,4 +230,60 @@ body {
     .btn-secondary {
         padding: 0.5rem 1rem;
     }
+}
+
+/* Alert styles */
+.alert {
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin-bottom: 1.5rem;
+    border: 1px solid #fecaca;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 400px;
+}
+.alert i {
+    color: #ef4444;
+    font-size: 1.25rem;
+}
+
+/* Button group for form */
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+/* Consistent select styling */
+.form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-card);
+    color: var(--color-text);
+    transition: all 0.2s ease;
+    font-size: 1rem;
+}
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Profile image enhancements */
+.profile-img {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+}
+.profile-img:hover {
+    transform: scale(1.04) translateY(-4px);
+    box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.22);
 } 

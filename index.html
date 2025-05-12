@@ -10,9 +10,15 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Firebase App (core) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <!-- Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900">
     <!-- Navbar -->
@@ -76,7 +82,7 @@
                 <div class="md:w-1/2 mt-12 md:mt-0">
                     <div class="relative">
                         <div class="absolute inset-0 bg-blue-600/20 rounded-full blur-2xl"></div>
-                        <img src="IMG-20250328-WA0011.jpg" alt="Profile"  loading="lazy" class="relative rounded-full w-64 h-64 object-cover mx-auto">
+                        <img src="IMG-20250328-WA0011.jpg" alt="Profile" loading="lazy" class="relative rounded-full w-80 h-80 object-cover mx-auto profile-img">
                     </div>
                 </div>
             </div>
@@ -236,7 +242,7 @@
                                 <i class="fas fa-play-circle mr-2"></i>
                                 Live Demo
                             </a>
-                            <a href="#" class="btn-link ml-4">
+                            <a href="https://github.com/banhamedo/Rfid-Attandance" class="btn-link ml-4">
                                 <i class="fab fa-github mr-2"></i>
                                 Source Code
                             </a>
@@ -272,7 +278,7 @@
                                 <i class="fas fa-play-circle mr-2"></i>
                                 Live Demo
                             </a>
-                            <a href="#" class="btn-link ml-4">
+                            <a href="https://github.com/banhamedo/StudentRpa" class="btn-link ml-4">
                                 <i class="fab fa-github mr-2"></i>
                                 Source Code
                             </a>
@@ -310,7 +316,7 @@
                                 <i class="fas fa-play-circle mr-2"></i>
                                 Live Demo
                             </a>
-                            <a href="#" class="btn-link ml-4">
+                            <a href="https://github.com/banhamedo/Automate-QR" class="btn-link ml-4">
                                 <i class="fab fa-github mr-2"></i>
                                 Source Code
                             </a>
@@ -432,37 +438,41 @@
                     </div>
                     
                     <form id="contactForm" class="space-y-6">
+                        <div class="alert" id="formAlert" style="display:none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Please fill in all required fields</span>
+                        </div>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" required>
+                            <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Subject</label>
-                            <select id="subject" name="subject" class="form-select">
+                            <select id="subject" name="subject">
                                 <option>Project Inquiry</option>
                                 <option>Job Opportunity</option>
                                 <option>Collaboration</option>
                                 <option>Other</option>
                             </select>
                         </div>
-                        <div class="flex justify-center mt-8">
+                        <div class="btn-group">
                             <a href="My cv.pdf" class="btn-primary" download>
                                 <i class="fas fa-download mr-2"></i>
                                 Download CV
                             </a>
+                            <button type="submit" class="btn-primary">
+                                Send Message
+                                <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
                         </div>
-                        <button type="submit" class="btn-primary w-full">
-                            Send Message
-                            <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
                     </form>
                 </div>
             </div>
@@ -481,6 +491,99 @@
                     <p>Egyptian Space Science and Monitoring Authority</p>
                 </div>
                 <!-- Add more achievements -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Downloads Section -->
+    <section id="downloads" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">Downloads (CV & Certificates)</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <!-- CV Download Card -->
+                <div class="achievement-card flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md">
+                    <i class="fas fa-file-alt text-blue-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold mb-2">My CV</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">Download my latest CV in PDF format.</p>
+                    <a href="My cv.pdf" class="btn-primary" download>
+                        <i class="fas fa-download mr-2"></i> Download CV
+                    </a>
+                </div>
+                <!-- Certificate Cards -->
+                <div class="achievement-card flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md">
+                    <i class="fas fa-certificate text-yellow-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold mb-2">ADP-IOT Course Certificate (AR)</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">Download your IoT course certificate (Arabic).</p>
+                    <a href="cer/ADP-IOT_Course Certificate Ar.pdf" class="btn-primary" download>
+                        <i class="fas fa-download mr-2"></i> Download Certificate
+                    </a>
+                </div>
+                <div class="achievement-card flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md">
+                    <i class="fas fa-certificate text-yellow-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold mb-2">Advance UiPath</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">Download your Advanced UiPath certificate.</p>
+                    <a href="cer/Advance uipath.pdf" class="btn-primary" download>
+                        <i class="fas fa-download mr-2"></i> Download Certificate
+                    </a>
+                </div>
+                <div class="achievement-card flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md">
+                    <i class="fas fa-certificate text-yellow-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold mb-2">HP Certificate DS</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">Download your HP Data Science certificate.</p>
+                    <a href="cer/HP certificate DS.pdf" class="btn-primary" download>
+                        <i class="fas fa-download mr-2"></i> Download Certificate
+                    </a>
+                </div>
+                <div class="achievement-card flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md">
+                    <i class="fas fa-certificate text-yellow-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold mb-2">HTML & CSS (EN)</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">Download your HTML & CSS certificate (English).</p>
+                    <a href="cer/html_css_En.pdf" class="btn-primary" download>
+                        <i class="fas fa-download mr-2"></i> Download Certificate
+                    </a>
+                </div>
+                <!-- Additional Certificate Cards -->
+                <div class="achievement-card flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md">
+                    <i class="fas fa-certificate text-yellow-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold mb-2">Linux (Mahara Tech)</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">Linux certificate from Mahara Tech.</p>
+                    <a href="cer/Linux mahara.pdf" class="btn-primary" download>
+                        <i class="fas fa-download mr-2"></i> Download Certificate
+                    </a>
+                </div>
+                <div class="achievement-card flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md">
+                    <i class="fas fa-certificate text-yellow-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold mb-2">Business Analyst & Python (EN)</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">Business Analyst and Python certificate (English).</p>
+                    <a href="cer/pyhton_En.pdf" class="btn-primary" download>
+                        <i class="fas fa-download mr-2"></i> Download Certificate
+                    </a>
+                </div>
+                <div class="achievement-card flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md">
+                    <i class="fas fa-certificate text-yellow-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold mb-2">RPA Developer</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">RPA Developer certificate.</p>
+                    <a href="cer/Rpa_developer.pdf" class="btn-primary" download>
+                        <i class="fas fa-download mr-2"></i> Download Certificate
+                    </a>
+                </div>
+                <div class="achievement-card flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md">
+                    <i class="fas fa-certificate text-yellow-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold mb-2">UiPath RPA</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">UiPath RPA certificate.</p>
+                    <a href="cer/uipath _rpa.pdf" class="btn-primary" download>
+                        <i class="fas fa-download mr-2"></i> Download Certificate
+                    </a>
+                </div>
+            </div>
+            <!-- Portfolio PDF Download and Print Buttons -->
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
+                <a href="portfolio.pdf" class="btn-primary" download>
+                    <i class="fas fa-file-pdf mr-2"></i> Download Portfolio PDF
+                </a>
+                <button class="btn-secondary" onclick="window.print()">
+                    <i class="fas fa-print mr-2"></i> Print Portfolio
+                </button>
             </div>
         </div>
     </section>
@@ -551,5 +654,11 @@
 
     <!-- Custom JS -->
     <script src="script.js"></script>
+    <script src="chatbot.js"></script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-800 transition-all z-50" style="display:none;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </body>
 </html> 

@@ -1,3 +1,18 @@
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyC_7K2Wr301_CBwjSMa8T0MsDgJ0fzKC8Q",
+  authDomain: "contact-cd716.firebaseapp.com",
+  databaseURL: "https://contact-cd716-default-rtdb.firebaseio.com",
+  projectId: "contact-cd716",
+  storageBucket: "contact-cd716.appspot.com",
+  messagingSenderId: "892046660987",
+  appId: "1:892046660987:web:d336fbf06f96e0537619de",
+  measurementId: "G-H45P01T7PF"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 // Theme Toggle
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
@@ -119,6 +134,29 @@ function showAlert(message, type) {
     }, 5000);
 }
 
+// Telegram notification function
+function sendTelegramNotification(data) {
+    const token = "7712958701:AAGBAqEYx2gvEPCOHFWVI0aCG_eERK9Ql0U";
+    const chat_id = "1278161988";
+    const message =
+        `📬 New Contact Form Submission:%0A` +
+        `👤 Name: ${encodeURIComponent(data.name)}%0A` +
+        `✉️ Email: ${encodeURIComponent(data.email)}%0A` +
+        `📝 Message: ${encodeURIComponent(data.message)}%0A` +
+        `🏷️ Subject: ${encodeURIComponent(data.subject || '')}`;
+
+    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${message}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Optionally handle success
+        })
+        .catch(error => {
+            // Optionally handle error
+        });
+}
+
 // Form submission handling
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
@@ -141,21 +179,20 @@ if (contactForm) {
                 throw new Error('Please fill in all required fields');
             }
 
-            const response = await fetch('/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
+            // Save to Firebase
+            await db.ref('contacts').push({
+                name: data.name,
+                email: data.email,
+                message: data.message,
+                subject: data.subject || '',
+                timestamp: Date.now()
             });
 
-            if (response.ok) {
-                showAlert('Message sent successfully!', 'success');
-                contactForm.reset();
-            } else {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to send message');
-            }
+            // Send Telegram notification
+            sendTelegramNotification(data);
+
+            showAlert('Message sent successfully!', 'success');
+            contactForm.reset();
         } catch (error) {
             showAlert(error.message || 'Error sending message. Please try again.', 'error');
         } finally {
@@ -189,4 +226,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             }
         }
     });
-}); 
+});
+
+// Scroll to Top Button functionality
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+if (scrollToTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.style.display = 'block';
+        } else {
+            scrollToTopBtn.style.display = 'none';
+        }
+    });
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+} 
