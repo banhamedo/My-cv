@@ -21,6 +21,13 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
     <link rel="icon" type="image/png" href="cer/portfolio.png">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900">
     <!-- Navbar -->
@@ -82,7 +89,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-20 min-h-screen flex items-center">
+    <section id="home" class="pt-20 min-h-screen flex items-center" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 text-center md:text-left">
@@ -112,9 +119,9 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white dark:bg-gray-800">
+    <section id="about" class="py-20 bg-white dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-10 mt-8 text-center tracking-wide">About Me</h2>
             <div class="mt-12">
                 <div class="max-w-3xl mx-auto text-center mb-12">
                     <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
@@ -234,9 +241,9 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="services" class="py-20 bg-gray-50 dark:bg-gray-900" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
-            <h2 class="section-title">What I Offer</h2>
+            <h2 class="section-title text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-10 mt-8 text-center tracking-wide">What I Offer</h2>
             <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <div class="service-card">
                     <i class="fas fa-chart-line text-blue-600 text-3xl mb-4"></i>
@@ -258,9 +265,9 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white dark:bg-gray-800">
+    <section id="skills" class="py-20 bg-white dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
-            <h2 class="section-title">Skills</h2>
+            <h2 class="section-title text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-10 mt-8 text-center tracking-wide">Skills</h2>
             <div class="mt-12">
                 <div class="max-w-3xl mx-auto text-center mb-12">
                     <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
@@ -360,7 +367,7 @@
     </section>
 
     <!-- Certificates Section -->
-    <section id="certificates" class="py-16 bg-gray-50">
+    <section id="certificates" class="py-16 bg-gray-50" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12">الشهادات والدورات التدريبية</h2>
             
@@ -437,7 +444,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white dark:bg-gray-800">
+    <section id="experience" class="py-20 bg-white dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
             <h2 class="section-title">Professional Journey</h2>
             <div class="relative mt-12">
@@ -467,12 +474,12 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
-            <h2 class="section-title">My Projects</h2>
+            <h2 class="section-title text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-10 mt-8 text-center tracking-wide">My Projects</h2>
             <div class="grid md:grid-cols-2 gap-8 mt-12">
                 <!-- RFID Attendance Project -->
-                <div class="project-card">
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-id-card text-2xl text-blue-600 mr-3"></i>
@@ -495,12 +502,12 @@
                             <span class="tech-tag">Automation</span>
                         </div>
                         <div class="project-links mt-4">
-                            <a href="#" class="btn-link">
-                                <i class="fas fa-play-circle mr-2"></i>
+                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fas fa-play-circle mr-2 animate-pulse"></i>
                                 Live Demo
                             </a>
-                            <a href="https://github.com/banhamedo/Rfid-Attandance" class="btn-link ml-4">
-                                <i class="fab fa-github mr-2"></i>
+                            <a href="https://github.com/banhamedo/Rfid-Attandance" class="btn-link ml-4 transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fab fa-github mr-2 animate-spin"></i>
                                 Source Code
                             </a>
                         </div>
@@ -508,7 +515,7 @@
                 </div>
 
                 <!-- Degree Student System -->
-                <div class="project-card">
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-user-graduate text-2xl text-blue-600 mr-3"></i>
@@ -531,12 +538,12 @@
                             <span class="tech-tag">Database</span>
                         </div>
                         <div class="project-links mt-4">
-                            <a href="#" class="btn-link">
-                                <i class="fas fa-play-circle mr-2"></i>
+                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fas fa-play-circle mr-2 animate-pulse"></i>
                                 Live Demo
                             </a>
-                            <a href="https://github.com/banhamedo/StudentRpa" class="btn-link ml-4">
-                                <i class="fab fa-github mr-2"></i>
+                            <a href="https://github.com/banhamedo/StudentRpa" class="btn-link ml-4 transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fab fa-github mr-2 animate-spin"></i>
                                 Source Code
                             </a>
                         </div>
@@ -544,7 +551,7 @@
                 </div>
 
                 <!-- RPA Automated System -->
-                <div class="project-card">
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-robot text-2xl text-blue-600 mr-3"></i>
@@ -569,12 +576,12 @@
                             <span class="tech-tag">Automation</span>
                         </div>
                         <div class="project-links mt-4">
-                            <a href="#" class="btn-link">
-                                <i class="fas fa-play-circle mr-2"></i>
+                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fas fa-play-circle mr-2 animate-pulse"></i>
                                 Live Demo
                             </a>
-                            <a href="https://github.com/banhamedo/Automate-QR" class="btn-link ml-4">
-                                <i class="fab fa-github mr-2"></i>
+                            <a href="https://github.com/banhamedo/Automate-QR" class="btn-link ml-4 transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fab fa-github mr-2 animate-spin"></i>
                                 Source Code
                             </a>
                         </div>
@@ -582,7 +589,7 @@
                 </div>
 
                 <!-- Recycling Web App -->
-                <div class="project-card">
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-recycle text-2xl text-blue-600 mr-3"></i>
@@ -605,12 +612,12 @@
                             <span class="tech-tag">UX Design</span>
                         </div>
                         <div class="project-links mt-4">
-                            <a href="#" class="btn-link">
-                                <i class="fas fa-play-circle mr-2"></i>
+                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fas fa-play-circle mr-2 animate-pulse"></i>
                                 Live Demo
                             </a>
-                            <a href="#" class="btn-link ml-4">
-                                <i class="fab fa-github mr-2"></i>
+                            <a href="#" class="btn-link ml-4 transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fab fa-github mr-2 animate-spin"></i>
                                 Source Code
                             </a>
                         </div>
@@ -618,7 +625,7 @@
                 </div>
 
                 <!-- Mobile Shop E-commerce -->
-                <div class="project-card">
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-mobile-alt text-2xl text-blue-600 mr-3"></i>
@@ -644,12 +651,12 @@
                             <span class="tech-tag">Payment Integration</span>
                         </div>
                         <div class="project-links mt-4">
-                            <a href="#" class="btn-link">
-                                <i class="fas fa-play-circle mr-2"></i>
+                            <a href="#" class="btn-link transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fas fa-play-circle mr-2 animate-pulse"></i>
                                 Live Demo
                             </a>
-                            <a href="https://github.com/banhamedo/Mobile-Shop-E-commerce" class="btn-link ml-4">
-                                <i class="fab fa-github mr-2"></i>
+                            <a href="https://github.com/banhamedo/Mobile-Shop-E-commerce" class="btn-link ml-4 transition-transform duration-300 hover:scale-110 hover:text-blue-700 flex items-center">
+                                <i class="fab fa-github mr-2 animate-spin"></i>
                                 Source Code
                             </a>
                         </div>
@@ -660,9 +667,9 @@
     </section>
 
     <!-- Achievements Section -->
-    <section id="achievements" class="py-20 bg-white dark:bg-gray-800">
+    <section id="achievements" class="py-20 bg-white dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
-            <h2 class="section-title">Achievements & Recognition</h2>
+            <h2 class="section-title text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-10 mt-8 text-center tracking-wide">Achievements & Recognition</h2>
             <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <!-- Add your achievements, awards, recognition -->
                 <div class="achievement-card">
@@ -676,9 +683,9 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-10 mt-8 text-center tracking-wide">Get In Touch</h2>
             <div class="max-w-4xl mx-auto mt-12">
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
                     <div class="contact-info-card">
@@ -752,9 +759,9 @@
                                 <i class="fas fa-download mr-2"></i>
                                 Download CV
                             </a>
-                            <button type="submit" class="btn-primary">
+                            <button type="submit" class="btn-primary transition-transform duration-300 hover:scale-110 hover:bg-blue-700 flex items-center">
                                 Send Message
-                                <i class="fas fa-paper-plane ml-2"></i>
+                                <i class="fas fa-paper-plane ml-2 animate-bounce"></i>
                             </button>
                         </div>
                     </form>
@@ -791,5 +798,36 @@
     <button id="scrollToTopBtn" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-800 transition-all z-50" style="display:none;">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- Add AOS JS before </body> -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <!-- Floating Bottom Navbar -->
+    <div id="floatingNavbar" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 shadow-lg rounded-full px-6 py-2 flex gap-6 items-center z-50 transition-all duration-300 opacity-0 pointer-events-none">
+        <a href="#home" class="text-blue-600 hover:text-blue-800 text-xl" title="Home"><i class="fas fa-home"></i></a>
+        <a href="#about" class="text-blue-600 hover:text-blue-800 text-xl" title="About"><i class="fas fa-user"></i></a>
+        <a href="#services" class="text-blue-600 hover:text-blue-800 text-xl" title="Services"><i class="fas fa-cogs"></i></a>
+        <a href="#projects" class="text-blue-600 hover:text-blue-800 text-xl" title="Projects"><i class="fas fa-project-diagram"></i></a>
+        <a href="#contact" class="text-blue-600 hover:text-blue-800 text-xl" title="Contact"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <!-- Add JS to control floating navbar visibility -->
+    <script>
+    let lastScrollY = window.scrollY;
+    const floatingNavbar = document.getElementById('floatingNavbar');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 100 && window.scrollY > lastScrollY) {
+            floatingNavbar.classList.add('opacity-100','pointer-events-auto');
+            floatingNavbar.classList.remove('opacity-0','pointer-events-none');
+        } else {
+            floatingNavbar.classList.remove('opacity-100','pointer-events-auto');
+            floatingNavbar.classList.add('opacity-0','pointer-events-none');
+        }
+        lastScrollY = window.scrollY;
+    });
+    </script>
 </body>
 </html> 
