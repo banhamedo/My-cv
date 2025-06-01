@@ -25,15 +25,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
 
     <!-- Firebase Configuration -->
-    <script>
-        const firebaseConfig = {
-            // Your Firebase configuration object will go here
-            // You'll need to add your own Firebase config
-        };
-        
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
+    <!-- تم حذف تهيئة Firebase من هنا لأن التهيئة موجودة في script.js فقط -->
 
     <link rel="icon" type="image/png" href="cer/portfolio.png">
     <!-- AOS Animation CSS -->
@@ -565,6 +557,10 @@
                                 <i class="fab fa-git-alt text-2xl text-blue-600 mr-2"></i>
                                 <span class="text-gray-700 dark:text-gray-300">Git</span>
                             </div>
+                            <div class="tech-item flex items-center p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-database text-2xl text-yellow-500 mr-2"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Firebase</span>
+                            </div>
                         </div>
                     </div>
 
@@ -729,10 +725,10 @@
                 </div>
 
                 <!-- شهادة Graphic design -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/WhatsApp Image 2025-06-01 at 19.05.59_2b4079b2.jpg', 'Graphic design', 'Kayan', '2025')">
-                    <img src="cer/WhatsApp Image 2025-06-01 at 19.05.59_2b4079b2.jpg" alt="Graphic design Certificate" class="w-full h-48 object-cover">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/WhatsApp Image 2025-06-01 at 19.05.59_2b4079b2.jpg', 'Graphic Design', 'Kayan', '2025')">
+                    <img src="cer/WhatsApp Image 2025-06-01 at 19.05.59_2b4079b2.jpg" alt="Graphic Design Certificate" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">Graphic design</h3>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">Graphic Design</h3>
                         <p class="text-gray-600">Kayan</p>
                         <p class="text-gray-500 text-sm mt-2">2025</p>
                     </div>
