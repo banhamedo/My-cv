@@ -19,13 +19,321 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <!-- Firebase Database -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <!-- Firebase Storage -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+
+    <!-- Firebase Configuration -->
+    <script>
+        const firebaseConfig = {
+            // Your Firebase configuration object will go here
+            // You'll need to add your own Firebase config
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 
     <link rel="icon" type="image/png" href="cer/portfolio.png">
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts: Cairo for Arabic/English -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        html, body {
+            font-family: 'Cairo', Arial, Helvetica, sans-serif;
+        }
+        :root {
+            --primary: #818cf8;
+            --primary-dark: #6366f1;
+            --accent: #fbbf24;
+            --bg: #181f2a;
+            --card: #232a36;
+            --text: #f1f5f9;
+            --text-secondary: #a1a1aa;
+            --border: #334155;
+        }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
+        }
+        .section-title {
+            color: var(--primary);
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(129,140,248,0.08);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 16px rgba(129,140,248,0.15);
+        }
+        .btn-secondary {
+            background: var(--card);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            font-weight: 700;
+            border-radius: 0.5rem;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .skill-card, .project-card, .certificate-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-radius: 1rem;
+        }
+        .nav-link {
+            color: var(--text-secondary);
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        .icon-3d {
+            color: var(--accent);
+        }
+        .social-link {
+            background: var(--card);
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+        .social-link:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .form-group label {
+            color: var(--text);
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-dark)33;
+        }
         html {
             scroll-behavior: smooth;
+        }
+
+        /* 3D Effects */
+        .profile-img {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+
+        .service-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            perspective: 1000px;
+        }
+
+        .service-card:hover {
+            transform: translateZ(20px) rotateX(5deg);
+        }
+
+        .project-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            perspective: 1000px;
+        }
+
+        .project-card:hover {
+            transform: translateZ(30px) rotateY(5deg);
+        }
+
+        .skill-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            perspective: 1000px;
+        }
+
+        .skill-card:hover {
+            transform: translateZ(15px) rotateX(5deg);
+        }
+
+        .certificate-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            perspective: 1000px;
+        }
+
+        .certificate-card:hover {
+            transform: translateZ(25px) rotateY(5deg);
+        }
+
+        .btn-primary, .btn-secondary {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateZ(10px);
+        }
+
+        .nav-link {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateZ(5px);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) translateZ(0); }
+            50% { transform: translateY(-10px) translateZ(20px); }
+            100% { transform: translateY(0px) translateZ(0); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* 3D Card Effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+
+        /* 3D Button Effect */
+        .btn-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-3d:hover {
+            transform: translateZ(15px);
+        }
+
+        /* 3D Icon Effect */
+        .icon-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-3d:hover {
+            transform: rotateY(180deg);
+        }
+
+        /* 3D Modal Effects */
+        .modal-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            opacity: 0;
+            transform: scale(0.8) rotateX(-20deg);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-3d.show {
+            opacity: 1;
+            transform: scale(1) rotateX(0);
+        }
+
+        .modal-content-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .modal-content-3d:hover {
+            transform: translateZ(20px);
+        }
+
+        /* Modal Backdrop Animation */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes progress {
+            0% { width: 0; }
+            100% { width: var(--progress); }
+        }
+
+        .animate-progress {
+            animation: progress 1.5s ease-out forwards;
+        }
+
+        .tech-item, .soft-skill-item, .cert-item {
+            transition: transform 0.2s ease;
+        }
+
+        .tech-item:hover, .soft-skill-item:hover, .cert-item:hover {
+            transform: translateX(5px);
+        }
+
+        /* Modal Content */
+        .modal-3d {
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Certificate Image */
+        #certificateImage {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            margin: 0 auto;
+        }
+
+        #closeCertificateModal {
+            background: rgba(255,255,255,0.9);
+            color: #222;
+            border: none;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 1100;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        #closeCertificateModal:hover {
+            background: #ff4d4f;
+            color: #fff;
+            transform: scale(1.1) rotate(90deg);
+            cursor: pointer;
         }
     </style>
 </head>
@@ -43,9 +351,7 @@
                     <a href="#certificates" class="nav-link">Certificates</a>
                     <a href="#achievements" class="nav-link">Achievements</a>
                     <a href="#contact" class="nav-link">Contact</a>
-                    <button id="themeToggle" class="nav-link">
-                        <i class="fas fa-moon"></i>
-                    </button>
+                    <button id="themeToggle" class="nav-link"><i id="themeIcon" class="fas fa-moon"></i></button>
                 </div>
                 <button id="menuBtn" class="md:hidden text-gray-600 dark:text-gray-300">
                     <i class="fas fa-bars text-2xl"></i>
@@ -84,6 +390,9 @@
                 <a href="#contact" class="mobile-nav-link">
                     <i class="fas fa-envelope mr-2"></i>Contact
                 </a>
+                <button id="themeToggle" class="nav-link">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -93,25 +402,25 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 text-center md:text-left">
-                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4 floating">
                         Hi, I'm <span class="text-blue-600">Mohamed Ibrahim</span>
                     </h1>
-                    <p class="text-xl text-gray-600 dark:text-gray-300 mb-8" id="typingText"></p>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 floating" id="typingText"></p>
                     <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                        <a href="#contact" class="btn-primary">
+                        <a href="#contact" class="btn-primary btn-3d">
                             Contact Me
-                            <i class="fas fa-arrow-right ml-2"></i>
+                            <i class="fas fa-arrow-right ml-2 icon-3d"></i>
                         </a>
-                        <a href="#projects" class="btn-secondary">
+                        <a href="#projects" class="btn-secondary btn-3d">
                             View Projects
-                            <i class="fas fa-eye ml-2"></i>
+                            <i class="fas fa-eye ml-2 icon-3d"></i>
                         </a>
                     </div>
                 </div>
                 <div class="md:w-1/2 mt-12 md:mt-0">
                     <div class="relative">
-                        <div class="absolute inset-0 bg-blue-600/20 rounded-full blur-2xl"></div>
-                        <img src="IMG-20250328-WA0011.jpg" alt="Profile" loading="lazy" class="relative rounded-full w-80 h-80 object-cover mx-auto profile-img">
+                        <div class="absolute inset-0 bg-blue-600/20 rounded-full blur-2xl floating"></div>
+                        <img src="IMG-20250328-WA0011.jpg" alt="Profile" loading="lazy" class="relative rounded-full w-96 h-96 object-cover mx-auto profile-img card-3d">
                     </div>
                 </div>
             </div>
@@ -147,25 +456,27 @@
                     </div>
                 </div>
 
-   
+            </div>
+        </div>
+    </section>
 
     <!-- Services Section -->
     <section id="services" class="py-20 bg-gray-50 dark:bg-gray-900" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
-            <h2 class="section-title text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-10 mt-8 text-center tracking-wide">What I Offer</h2>
+            <h2 class="section-title text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-10 mt-8 text-center tracking-wide floating">What I Offer</h2>
             <div class="grid md:grid-cols-3 gap-8 mt-12">
-                <div class="service-card">
-                    <i class="fas fa-chart-line text-blue-600 text-3xl mb-4"></i>
+                <div class="service-card card-3d">
+                    <i class="fas fa-chart-line text-blue-600 text-3xl mb-4 icon-3d"></i>
                     <h3>Data Analysis</h3>
                     <p>Transform raw data into actionable insights using advanced analytical techniques.</p>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-robot text-blue-600 text-3xl mb-4"></i>
+                <div class="service-card card-3d">
+                    <i class="fas fa-robot text-blue-600 text-3xl mb-4 icon-3d"></i>
                     <h3>RPA Development</h3>
                     <p>Automate business processes to improve efficiency and reduce manual work.</p>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-code text-blue-600 text-3xl mb-4"></i>
+                <div class="service-card card-3d">
+                    <i class="fas fa-code text-blue-600 text-3xl mb-4 icon-3d"></i>
                     <h3>Web Development</h3>
                     <p>Create responsive and modern web applications with latest technologies.</p>
                 </div>
@@ -184,176 +495,363 @@
                     </p>
                 </div>
 
-                <!-- Skills Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Technical Skills -->
-                    <div class="skill-card">
-                        <i class="fas fa-laptop-code text-3xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-4">Technical Skills</h3>
-                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Python Programming & Data Science</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Front-End Development</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>RPA & Automation</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>MySQL & Database Management</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Linux & Windows OS</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Networking & Security</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Computer & Internet Troubleshooting</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>CCTV Installation & Configuration</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Office Applications (Word, Excel, PowerPoint, etc.)</li>
-                        </ul>
+                <!-- Enhanced Skills Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                    <!-- Technical Skills Card -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-laptop-code text-3xl text-blue-600 mr-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Technical Skills</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700 dark:text-gray-300">Python & Data Science</span>
+                                    <span class="text-blue-600">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-blue-600 h-2.5 rounded-full animate-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700 dark:text-gray-300">Web Development</span>
+                                    <span class="text-blue-600">85%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-blue-600 h-2.5 rounded-full animate-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700 dark:text-gray-300">RPA & Automation</span>
+                                    <span class="text-blue-600">88%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-blue-600 h-2.5 rounded-full animate-progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Certifications -->
-                    <div class="skill-card">
-                        <i class="fas fa-certificate text-3xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-4">Certifications</h3>
-                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                            <li>Machine Learning - Egyptian Space Science Authority</li>
-                            <li>Business Analysis Certificate</li>
-                            <li>SQL Certificate - Mahara Tech</li>
-                            <li>Python Certificate - Mahara Tech</li>
-                            <li>Front-End Development - Mahara Tech</li>
-                            <li>Analysis Tools Certification</li>
-                        </ul>
+                    <!-- Tools & Technologies Card -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-tools text-3xl text-blue-600 mr-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Tools & Technologies</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="tech-item flex items-center p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fab fa-python text-2xl text-blue-600 mr-2"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Python</span>
+                            </div>
+                            <div class="tech-item flex items-center p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fab fa-js text-2xl text-blue-600 mr-2"></i>
+                                <span class="text-gray-700 dark:text-gray-300">JavaScript</span>
+                            </div>
+                            <div class="tech-item flex items-center p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fab fa-html5 text-2xl text-blue-600 mr-2"></i>
+                                <span class="text-gray-700 dark:text-gray-300">HTML5</span>
+                            </div>
+                            <div class="tech-item flex items-center p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fab fa-css3-alt text-2xl text-blue-600 mr-2"></i>
+                                <span class="text-gray-700 dark:text-gray-300">CSS3</span>
+                            </div>
+                            <div class="tech-item flex items-center p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-database text-2xl text-blue-600 mr-2"></i>
+                                <span class="text-gray-700 dark:text-gray-300">MySQL</span>
+                            </div>
+                            <div class="tech-item flex items-center p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fab fa-git-alt text-2xl text-blue-600 mr-2"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Git</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Soft Skills -->
-                    <div class="skill-card">
-                        <i class="fas fa-users text-3xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-4">Soft Skills</h3>
-                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Problem Solving</li>
-                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Team Collaboration</li>
-                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Communication Skills</li>
-                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Time Management</li>
-                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Adaptability</li>
-                            <li><i class="fas fa-star text-yellow-500 mr-2"></i>Research & Creativity</li>
-                        </ul>
+                    <!-- Soft Skills Card -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-users text-3xl text-blue-600 mr-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Soft Skills</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="soft-skill-item flex items-center p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Problem Solving</span>
+                            </div>
+                            <div class="soft-skill-item flex items-center p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-comments text-green-500 mr-3"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Communication</span>
+                            </div>
+                            <div class="soft-skill-item flex items-center p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-users-cog text-purple-500 mr-3"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Team Collaboration</span>
+                            </div>
+                            <div class="soft-skill-item flex items-center p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-clock text-red-500 mr-3"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Time Management</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Languages -->
-                <div class="mt-12 flex justify-center gap-8">
-                    <div class="text-center">
-                        <h4 class="font-bold text-gray-800 dark:text-white mb-2">Arabic</h4>
-                        <p class="text-gray-600 dark:text-gray-300">Native</p>
+                <!-- Languages Section -->
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Languages</h3>
+                        <div class="space-y-6">
+                            <div class="language-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-700 dark:text-gray-300">Arabic</span>
+                                    <span class="text-blue-600">Native</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="language-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-700 dark:text-gray-300">English</span>
+                                    <span class="text-blue-600">Intermediate</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <h4 class="font-bold text-gray-800 dark:text-white mb-2">English</h4>
-                        <p class="text-gray-600 dark:text-gray-300">Intermediate</p>
-                    </div>
-                </div>
 
-                <div class="skills-progress mt-8">
-                    <div class="skill-progress-item">
-                        <div class="flex justify-between mb-2">
-                            <span>Python</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                            <div class="h-full bg-blue-600 rounded-full" style="width: 85%"></div>
-                        </div>
-                        <div class="flex justify-between mb-2">
-                            <span>PHP</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                            <div class="h-full bg-blue-600 rounded-full" style="width: 90%"></div>
-                        </div>
-                        <div class="flex justify-between mb-2">
-                            <span>Html</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                            <div class="h-full bg-blue-600 rounded-full" style="width: 90%"></div>
+                    <!-- Certifications Section -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Certifications</h3>
+                        <div class="space-y-4">
+                            <div class="cert-item flex items-center p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-certificate text-yellow-500 mr-3"></i>
+                                <div>
+                                    <h4 class="text-gray-800 dark:text-white font-semibold" style="color: var(--primary);">Machine Learning</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Egyptian Space Science Authority</p>
+                                </div>
+                            </div>
+                            <div class="cert-item flex items-center p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-certificate text-yellow-500 mr-3"></i>
+                                <div>
+                                    <h4 class="text-gray-800 dark:text-white font-semibold" style="color: var(--primary);">Business Analysis</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Udemy</p>
+                                </div>
+                            </div>
+                            <div class="cert-item flex items-center p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-certificate text-yellow-500 mr-3"></i>
+                                <div>
+                                    <h4 class="text-gray-800 dark:text-white font-semibold" style="color: var(--primary);">Front-End Development</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Mahara Tech</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Add more skills with progress bars -->
-                </div>
-
-                <div class="skills-cloud mt-8">
-                    <!-- Add interactive skill bubbles or word cloud -->
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Certificates Section -->
-    <section id="certificates" class="py-16 bg-gray-50" data-aos="fade-up" data-aos-duration="1000">
+    <section id="certificates" class="py-16" data-aos="fade-up" data-aos-duration="1000">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">الشهادات والدورات التدريبية</h2>
-            
+            <h2 class="text-3xl font-bold text-center mb-12 floating">Certificates & Training</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- شهادة Machine Learning -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/ml.jpg', 'Machine Learning', 'NARS', '2023')">
                     <img src="cer/ml.jpg" alt="شهادة Machine Learning" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
-                        <p class="text-gray-600">هيئة الفضاء المصرية</p>
-                        <p class="text-gray-500 text-sm mt-2">2023</p>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">Machine Learning</h3>
+                        <p class="text-gray-600">NARS</p>
+                        <p class="text-gray-500 text-sm mt-2">2024</p>
                     </div>
                 </div>
 
-                <!-- شهادة تحليل الأعمال -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                    <img src="cer/business-analysis.png" alt="شهادة تحليل الأعمال" class="w-full h-48 object-cover">
+                <!-- شهادة Businees Analyst -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/business-analysis.png', 'Businees Analyst', '', '2023')">
+                    <img src="cer/business-analysis.png" alt="شهادة Businees Analyst" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">تحليل الأعمال</h3>
-                        <p class="text-gray-600"></p>
-                        <p class="text-gray-500 text-sm mt-2">2023</p>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">Businees Analyst</h3>
+                        <p class="text-gray-600">Udemy</p>
+                        <p class="text-gray-500 text-sm mt-2">2024</p>
                     </div>
                 </div>
 
                 <!-- شهادة SQL -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/front.png', 'Front-End', 'Mahra-Tech', '2023')">
                     <img src="cer/front.png" alt="شهادة SQL" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Front-End</h3>
-                        <p class="text-gray-600">مهارة تك</p>
-                        <p class="text-gray-500 text-sm mt-2">2023</p>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">Front-End</h3>
+                        <p class="text-gray-600">Mahra-Tech</p>
+                        <p class="text-gray-500 text-sm mt-2">2024</p>
                     </div>
                 </div>
 
                 <!-- شهادة Python -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/python.png', 'Python', 'Mahra-Tech', '2023')">
                     <img src="cer/python.png" alt="شهادة Python" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Python</h3>
-                        <p class="text-gray-600">مهارة تك</p>
-                        <p class="text-gray-500 text-sm mt-2">2023</p>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">Python</h3>
+                        <p class="text-gray-600">Mahra-Tech</p>
+                        <p class="text-gray-500 text-sm mt-2">2024</p>
                     </div>
                 </div>
 
                 <!-- شهادة تطوير الويب -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/ds.png', 'Data sciecne', 'Hp', '2023')">
                     <img src="cer/ds.png" alt="شهادة تطوير الويب" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2"> علم البيانات</h3>
-                        <p class="text-gray-600"> Hp</p>
-                        <p class="text-gray-500 text-sm mt-2">2023</p>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">Data sciecne</h3>
+                        <p class="text-gray-600">Hp</p>
+                        <p class="text-gray-500 text-sm mt-2">2024</p>
                     </div>
                 </div>
 
                 <!-- شهادة أدوات التحليل -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/project-mangment.png', 'project-management', 'Udemy', '2023')">
                     <img src="cer/project-mangment.png" alt="شهادة أدوات التحليل" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2"> project-management</h3>
-                        <p class="text-gray-600"> Udemy</p>
-                        <p class="text-gray-500 text-sm mt-2">2023</p>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">project-management</h3>
+                        <p class="text-gray-600">Udemy</p>
+                        <p class="text-gray-500 text-sm mt-2">2024</p>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                    <img src="cer/web.png" alt="شهادة أدوات التحليل" class="w-full h-48 object-cover">
+
+                <!-- شهادة Kayan CV Writing -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/WhatsApp Image 2025-05-08 at 13.02.11_4e9ec131.jpg', 'CV Writing', 'Kayan', '2025')">
+                    <img src="cer/WhatsApp Image 2025-05-08 at 13.02.11_4e9ec131.jpg" alt="شهادة Kayan CV Writing" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2"> Web-Development</h3>
-                        <p class="text-gray-600"> NARS</p>
-                        <p class="text-gray-500 text-sm mt-2">2023</p>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">CV Writing</h3>
+                        <p class="text-gray-600">Kayan</p>
+                        <p class="text-gray-500 text-sm mt-2">2025</p>
+                    </div>
+                </div>
+
+                <!-- شهادة Graphic design -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/WhatsApp Image 2025-06-01 at 19.05.59_2b4079b2.jpg', 'Graphic design', 'Kayan', '2025')">
+                    <img src="cer/WhatsApp Image 2025-06-01 at 19.05.59_2b4079b2.jpg" alt="Graphic design Certificate" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">Graphic design</h3>
+                        <p class="text-gray-600">Kayan</p>
+                        <p class="text-gray-500 text-sm mt-2">2025</p>
+                    </div>
+                </div>
+                <!-- شهادة Web-Development -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openCertificateModal('cer/web.png', 'Web-Development', 'NARS', '2024')">
+                    <img src="cer/web.png" alt="Web-Development Certificate" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--primary);">Web-Development</h3>
+                        <p class="text-gray-600">NARS</p>
+                        <p class="text-gray-500 text-sm mt-2">2024</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden modal-backdrop">
+        <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-4xl w-full modal-3d">
+            <button id="closeCertificateModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500 transition-transform hover:scale-110">&times;</button>
+            <div class="text-center mb-4">
+                <h3 id="certificateTitle" class="text-2xl font-bold text-gray-800 dark:text-white"></h3>
+                <p id="certificateIssuer" class="text-gray-600 dark:text-gray-300"></p>
+                <p id="certificateYear" class="text-gray-500"></p>
+            </div>
+            <img id="certificateImage" src="" alt="Certificate" class="w-full rounded-lg modal-content-3d">
+        </div>
+    </div>
+
+    <!-- Add JS for modal animations -->
+    <script>
+        // Function to show modal with 3D effect
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            // Trigger reflow
+            modal.offsetHeight;
+            modal.querySelector('.modal-3d').classList.add('show');
+        }
+
+        // Function to hide modal with 3D effect
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = modal.querySelector('.modal-3d');
+            modalContent.classList.remove('show');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); // Match transition duration
+        }
+
+        // Update existing modal functions
+        function openVideoModal(e) {
+            e.preventDefault();
+            showModal('videoModal');
+            document.getElementById('demoVideo').play();
+        }
+
+        function openPhoneVideoModal(e) {
+            e.preventDefault();
+            showModal('phoneVideoModal');
+            document.getElementById('phoneDemoVideo').play();
+        }
+
+        function openRpaVideoModal(e) {
+            e.preventDefault();
+            showModal('rpaVideoModal');
+            document.getElementById('rpaDemoVideo').play();
+        }
+
+        function openCertificateModal(imageSrc, title, issuer, year) {
+            showModal('certificateModal');
+            document.getElementById('certificateImage').src = imageSrc;
+            document.getElementById('certificateTitle').textContent = title;
+            document.getElementById('certificateIssuer').textContent = issuer;
+            document.getElementById('certificateYear').textContent = year;
+        }
+
+        // Update close handlers
+        document.getElementById('closeVideoModal').onclick = function() {
+            hideModal('videoModal');
+            document.getElementById('demoVideo').pause();
+            document.getElementById('demoVideo').currentTime = 0;
+        };
+
+        document.getElementById('closePhoneVideoModal').onclick = function() {
+            hideModal('phoneVideoModal');
+            document.getElementById('phoneDemoVideo').pause();
+            document.getElementById('phoneDemoVideo').currentTime = 0;
+        };
+
+        document.getElementById('closeRpaVideoModal').onclick = function() {
+            hideModal('rpaVideoModal');
+            document.getElementById('rpaDemoVideo').pause();
+            document.getElementById('rpaDemoVideo').currentTime = 0;
+        };
+
+        document.getElementById('closeCertificateModal').onclick = function() {
+            hideModal('certificateModal');
+        };
+
+        // Update click outside handlers
+        window.addEventListener('click', function(e) {
+            const modals = ['videoModal', 'phoneVideoModal', 'rpaVideoModal', 'certificateModal'];
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (!modal.classList.contains('hidden') && e.target === modal) {
+                    hideModal(modalId);
+                    if (modalId !== 'certificateModal') {
+                        const video = modal.querySelector('video');
+                        if (video) {
+                            video.pause();
+                            video.currentTime = 0;
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
     <!-- Experience Section -->
     <section id="experience" class="py-20 bg-white dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1000">
@@ -391,7 +889,7 @@
             <h2 class="section-title text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-10 mt-8 text-center tracking-wide">My Projects</h2>
             <div class="grid md:grid-cols-2 gap-8 mt-12">
                 <!-- RFID Attendance Project -->
-                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="project-card card-3d">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-id-card text-2xl text-blue-600 mr-3"></i>
@@ -427,7 +925,7 @@
                 </div>
 
                 <!-- Degree Student System -->
-                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="project-card card-3d">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-user-graduate text-2xl text-blue-600 mr-3"></i>
@@ -463,7 +961,7 @@
                 </div>
 
                 <!-- RPA Automated System -->
-                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="project-card card-3d">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-robot text-2xl text-blue-600 mr-3"></i>
@@ -501,7 +999,7 @@
                 </div>
 
                 <!-- Recycling Web App -->
-                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="project-card card-3d">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-recycle text-2xl text-blue-600 mr-3"></i>
@@ -537,7 +1035,7 @@
                 </div>
 
                 <!-- Mobile Shop E-commerce -->
-                <div class="project-card" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="project-card card-3d">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-mobile-alt text-2xl text-blue-600 mr-3"></i>
@@ -706,6 +1204,34 @@
     <script src="script.js"></script>
     <script src="chatbot.js"></script>
 
+    <!-- Contact Form Handling -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const subject = document.getElementById('subject').value;
+            
+            if (!name || !email || !message) {
+                const alert = document.getElementById('formAlert');
+                alert.style.display = 'block';
+                return;
+            }
+
+            // Here you can add your form submission logic
+            // For example, sending to Firebase or an email service
+            console.log('Form submitted:', { name, email, message, subject });
+            
+            // Clear form
+            this.reset();
+            
+            // Show success message
+            alert('Thank you for your message! I will get back to you soon.');
+        });
+    </script>
+
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-800 transition-all z-50" style="display:none;">
         <i class="fas fa-arrow-up"></i>
@@ -742,95 +1268,95 @@
     });
     </script>
 
-    <!-- Modal for Live Demo Video -->
-    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-      <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-2xl w-full">
-        <button id="closeVideoModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500">&times;</button>
-        <video id="demoVideo" src="rec.mp4" controls autoplay class="w-full rounded-lg"></video>
-      </div>
-    </div>
-
-    <!-- Add JS for modal control -->
+    <!-- Update Footer Year -->
     <script>
-    function openVideoModal(e) {
-      e.preventDefault();
-      document.getElementById('videoModal').classList.remove('hidden');
-      document.getElementById('demoVideo').play();
-    }
-    document.getElementById('closeVideoModal').onclick = function() {
-      document.getElementById('videoModal').classList.add('hidden');
-      document.getElementById('demoVideo').pause();
-      document.getElementById('demoVideo').currentTime = 0;
-    };
-    // Close modal when clicking outside video
-    window.addEventListener('click', function(e) {
-      const modal = document.getElementById('videoModal');
-      if (!modal.classList.contains('hidden') && e.target === modal) {
-        modal.classList.add('hidden');
-        document.getElementById('demoVideo').pause();
-        document.getElementById('demoVideo').currentTime = 0;
-      }
-    });
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+
+    <!-- Scroll to Top Functionality -->
+    <script>
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.style.display = 'block';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <!-- Modal for Live Demo Video -->
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden modal-backdrop">
+        <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-2xl w-full modal-3d">
+            <button id="closeVideoModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500 transition-transform hover:scale-110">&times;</button>
+            <video id="demoVideo" src="rec.mp4" controls autoplay class="w-full rounded-lg modal-content-3d"></video>
+        </div>
+    </div>
 
     <!-- Modal for Mobile Shop Live Demo Video -->
-    <div id="phoneVideoModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-      <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-2xl w-full">
-        <button id="closePhoneVideoModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500">&times;</button>
-        <video id="phoneDemoVideo" src="phone.mp4" controls autoplay class="w-full rounded-lg"></video>
-      </div>
+    <div id="phoneVideoModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden modal-backdrop">
+        <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-2xl w-full modal-3d">
+            <button id="closePhoneVideoModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500 transition-transform hover:scale-110">&times;</button>
+            <video id="phoneDemoVideo" src="phone.mp4" controls autoplay class="w-full rounded-lg modal-content-3d"></video>
+        </div>
     </div>
-
-    <!-- Add JS for phone video modal control -->
-    <script>
-    function openPhoneVideoModal(e) {
-      e.preventDefault();
-      document.getElementById('phoneVideoModal').classList.remove('hidden');
-      document.getElementById('phoneDemoVideo').play();
-    }
-    document.getElementById('closePhoneVideoModal').onclick = function() {
-      document.getElementById('phoneVideoModal').classList.add('hidden');
-      document.getElementById('phoneDemoVideo').pause();
-      document.getElementById('phoneDemoVideo').currentTime = 0;
-    };
-    window.addEventListener('click', function(e) {
-      const modal = document.getElementById('phoneVideoModal');
-      if (!modal.classList.contains('hidden') && e.target === modal) {
-        modal.classList.add('hidden');
-        document.getElementById('phoneDemoVideo').pause();
-        document.getElementById('phoneDemoVideo').currentTime = 0;
-      }
-    });
-    </script>
 
     <!-- Modal for RPA Live Demo Video -->
-    <div id="rpaVideoModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-      <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-2xl w-full">
-        <button id="closeRpaVideoModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500">&times;</button>
-        <video id="rpaDemoVideo" src="rpa.mkv" controls autoplay class="w-full rounded-lg"></video>
-      </div>
+    <div id="rpaVideoModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden modal-backdrop">
+        <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 max-w-2xl w-full modal-3d">
+            <button id="closeRpaVideoModal" class="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl hover:text-red-500 transition-transform hover:scale-110">&times;</button>
+            <video id="rpaDemoVideo" src="rpa.mkv" controls autoplay class="w-full rounded-lg modal-content-3d"></video>
+        </div>
     </div>
 
-    <!-- Add JS for RPA video modal control -->
+    <!-- Ensure Certificate Modal Close Button Works -->
     <script>
-    function openRpaVideoModal(e) {
-      e.preventDefault();
-      document.getElementById('rpaVideoModal').classList.remove('hidden');
-      document.getElementById('rpaDemoVideo').play();
-    }
-    document.getElementById('closeRpaVideoModal').onclick = function() {
-      document.getElementById('rpaVideoModal').classList.add('hidden');
-      document.getElementById('rpaDemoVideo').pause();
-      document.getElementById('rpaDemoVideo').currentTime = 0;
-    };
-    window.addEventListener('click', function(e) {
-      const modal = document.getElementById('rpaVideoModal');
-      if (!modal.classList.contains('hidden') && e.target === modal) {
-        modal.classList.add('hidden');
-        document.getElementById('rpaDemoVideo').pause();
-        document.getElementById('rpaDemoVideo').currentTime = 0;
+      window.addEventListener('DOMContentLoaded', function() {
+        var closeBtn = document.getElementById('closeCertificateModal');
+        if (closeBtn) {
+          closeBtn.onclick = function() {
+            const modal = document.getElementById('certificateModal');
+            const modalContent = modal.querySelector('.modal-3d');
+            modalContent.classList.remove('show');
+            setTimeout(() => {
+              modal.classList.add('hidden');
+            }, 300);
+          };
+        }
+      });
+    </script>
+
+    <!-- Dark/Light Mode Toggle Script -->
+    <script>
+      function setTheme(theme) {
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.getElementById('themeIcon').classList.remove('fa-moon');
+          document.getElementById('themeIcon').classList.add('fa-sun');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.getElementById('themeIcon').classList.remove('fa-sun');
+          document.getElementById('themeIcon').classList.add('fa-moon');
+        }
+        localStorage.setItem('theme', theme);
       }
-    });
+      window.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light'));
+        document.getElementById('themeToggle').onclick = function() {
+          const isDark = document.documentElement.classList.contains('dark');
+          setTheme(isDark ? 'light' : 'dark');
+        };
+      });
     </script>
 </body>
 </html> 
